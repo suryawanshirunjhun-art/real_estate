@@ -109,83 +109,100 @@ def render_button(label, container=None, **kwargs):
 
 
 def apply_custom_styles():
-    """Injects professional corporate styling."""
+    """Injects professional corporate styling compatible with both Light and Dark mode."""
     st.markdown("""
     <style>
-    /* Global Card Polish */
+    /* Metric Cards: Auto-adapt to Light / Dark Theme without washing out text */
     div[data-testid="stMetric"] {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        padding: 16px 20px;
-        border-radius: 10px;
-        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+        background-color: rgba(128, 128, 128, 0.08) !important;
+        border: 1px solid rgba(128, 128, 128, 0.2) !important;
+        padding: 16px 20px !important;
+        border-radius: 10px !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
     }
     div[data-testid="stMetric"]:hover {
-        border-color: #0284c7;
-        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
-        transition: all 0.2s ease;
+        border-color: #0284c7 !important;
+        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12) !important;
+        transition: all 0.2s ease !important;
+    }
+    div[data-testid="stMetric"] label {
+        color: inherit !important;
+    }
+    div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+        color: inherit !important;
+    }
+    div[data-testid="stMetric"] div[data-testid="stMetricDelta"] {
+        color: inherit !important;
     }
     
     /* Executive Header Banner */
     .executive-banner {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
-        color: #ffffff;
-        padding: 28px 32px;
-        border-radius: 12px;
-        margin-bottom: 24px;
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%) !important;
+        color: #ffffff !important;
+        padding: 28px 32px !important;
+        border-radius: 12px !important;
+        margin-bottom: 24px !important;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18) !important;
     }
     .executive-banner h1 {
         color: #ffffff !important;
-        font-size: 2.3rem;
-        margin-bottom: 6px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
+        font-size: 2.3rem !important;
+        margin-bottom: 6px !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
     }
     .executive-banner p {
-        color: #94a3b8 !important;
-        font-size: 1.05rem;
-        margin: 0;
+        color: #cbd5e1 !important;
+        font-size: 1.05rem !important;
+        margin: 0 !important;
     }
 
     /* Enterprise Badges */
     .badge-pill {
-        display: inline-block;
-        padding: 5px 14px;
-        margin: 6px 8px 6px 0;
-        border-radius: 6px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        background-color: rgba(255, 255, 255, 0.12);
-        color: #f1f5f9;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: inline-block !important;
+        padding: 5px 14px !important;
+        margin: 6px 8px 6px 0 !important;
+        border-radius: 6px !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.02em !important;
+        background-color: rgba(255, 255, 255, 0.14) !important;
+        color: #f1f5f9 !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
     }
     .badge-live {
-        background-color: #064e3b;
-        color: #6ee7b7;
-        border: 1px solid #059669;
+        background-color: #064e3b !important;
+        color: #6ee7b7 !important;
+        border: 1px solid #059669 !important;
     }
     
-    /* Architectural Process Blocks */
+    /* Architectural Process Blocks: Dark & Light theme compatible */
     .arch-step {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-left: 4px solid #0284c7;
-        padding: 14px 18px;
-        border-radius: 6px;
-        margin-bottom: 12px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        background-color: rgba(128, 128, 128, 0.08) !important;
+        border: 1px solid rgba(128, 128, 128, 0.2) !important;
+        border-left: 4px solid #0284c7 !important;
+        padding: 14px 18px !important;
+        border-radius: 6px !important;
+        margin-bottom: 12px !important;
+        color: inherit !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    }
+    .arch-step strong {
+        color: #0284c7 !important;
     }
     
-    /* Market Insight Callout */
+    /* Market Insight Callout: Dark & Light theme compatible */
     .market-callout {
-        background-color: #f8fafc;
-        border: 1px solid #cbd5e1;
-        border-left: 4px solid #0f172a;
-        padding: 18px 20px;
-        border-radius: 6px;
-        margin: 18px 0;
+        background-color: rgba(2, 132, 199, 0.08) !important;
+        border: 1px solid rgba(2, 132, 199, 0.25) !important;
+        border-left: 4px solid #0284c7 !important;
+        padding: 18px 20px !important;
+        border-radius: 6px !important;
+        margin: 18px 0 !important;
+        color: inherit !important;
+    }
+    .market-callout h4, .market-callout strong {
+        color: #0284c7 !important;
     }
     </style>
     """, unsafe_allow_html=True)

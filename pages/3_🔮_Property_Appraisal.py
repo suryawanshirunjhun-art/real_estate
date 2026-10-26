@@ -150,7 +150,7 @@ res_c1, res_c2, res_c3 = st.columns([2, 1, 1])
 
 with res_c1:
     st.markdown("### 🏷️ Estimated Fair Market Valuation")
-    st.markdown(f"<h1 style='color: #0f172a; font-size: 3.2rem; margin: 0; font-weight: 700;'>{format_inr(pred_price)}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='color: #0284c7; font-size: 3.2rem; margin: 0; font-weight: 800;'>{format_inr(pred_price)}</h1>", unsafe_allow_html=True)
     st.caption(f"Exact Base Valuation: ₹ {pred_price:,.0f}")
 
 with res_c2:
