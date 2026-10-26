@@ -1,5 +1,5 @@
 """
-Shared utilities, helpers, styling and data loaders for the Streamlit presentation.
+Shared utilities, helpers, styling and data loaders for EstatePulse AI.
 """
 import os
 import joblib
@@ -84,7 +84,7 @@ def format_inr(value):
 
 
 def render_dataframe(df, hide_index=True, **kwargs):
-    """Renders dataframe without deprecation warnings across modern and older Streamlit."""
+    """Renders dataframe with modern width stretch compatibility."""
     try:
         return st.dataframe(df, width="stretch", hide_index=hide_index, **kwargs)
     except (TypeError, ValueError):
@@ -92,7 +92,7 @@ def render_dataframe(df, hide_index=True, **kwargs):
 
 
 def render_image(image, caption=None, **kwargs):
-    """Renders image without deprecation warnings across modern and older Streamlit."""
+    """Renders image with modern width stretch compatibility."""
     try:
         return st.image(image, caption=caption, width="stretch", **kwargs)
     except (TypeError, ValueError):
@@ -109,79 +109,83 @@ def render_button(label, container=None, **kwargs):
 
 
 def apply_custom_styles():
-    """Injects high-end presentation styling."""
+    """Injects professional corporate styling."""
     st.markdown("""
     <style>
-    /* Metric Card Styling */
+    /* Global Card Polish */
     div[data-testid="stMetric"] {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 14px 18px;
-        border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        padding: 16px 20px;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
     }
     div[data-testid="stMetric"]:hover {
-        border-color: #4361ee;
-        transform: translateY(-2px);
-        transition: all 0.2s ease-in-out;
+        border-color: #0284c7;
+        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+        transition: all 0.2s ease;
     }
     
-    /* Presentation Banner */
-    .present-banner {
-        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        color: white;
-        padding: 24px;
-        border-radius: 14px;
+    /* Executive Header Banner */
+    .executive-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
+        color: #ffffff;
+        padding: 28px 32px;
+        border-radius: 12px;
         margin-bottom: 24px;
-        box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
     }
-    .present-banner h1 {
-        color: white !important;
-        font-size: 2.2rem;
+    .executive-banner h1 {
+        color: #ffffff !important;
+        font-size: 2.3rem;
         margin-bottom: 6px;
         font-weight: 700;
+        letter-spacing: -0.02em;
     }
-    .present-banner p {
-        color: #e0e7ff !important;
+    .executive-banner p {
+        color: #94a3b8 !important;
         font-size: 1.05rem;
         margin: 0;
     }
 
-    /* Badge Pills */
+    /* Enterprise Badges */
     .badge-pill {
         display: inline-block;
-        padding: 4px 12px;
-        margin: 4px 6px 4px 0;
-        border-radius: 20px;
-        font-size: 0.82rem;
+        padding: 5px 14px;
+        margin: 6px 8px 6px 0;
+        border-radius: 6px;
+        font-size: 0.8rem;
         font-weight: 600;
-        background-color: #e0e7ff;
-        color: #1e40af;
-        border: 1px solid #bfdbfe;
+        letter-spacing: 0.02em;
+        background-color: rgba(255, 255, 255, 0.12);
+        color: #f1f5f9;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .badge-success {
-        background-color: #dcfce7;
-        color: #166534;
-        border: 1px solid #bbf7d0;
+    .badge-live {
+        background-color: #064e3b;
+        color: #6ee7b7;
+        border: 1px solid #059669;
     }
     
-    /* Flowchart / Step Card */
-    .pipeline-step {
-        background: white;
-        border-left: 4px solid #3b82f6;
-        padding: 12px 16px;
-        border-radius: 0 8px 8px 0;
+    /* Architectural Process Blocks */
+    .arch-step {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid #0284c7;
+        padding: 14px 18px;
+        border-radius: 6px;
         margin-bottom: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
     
-    /* Callout Card */
-    .insight-card {
-        background-color: #f0fdf4;
-        border-left: 5px solid #22c55e;
-        padding: 16px;
-        border-radius: 0 10px 10px 0;
-        margin: 16px 0;
+    /* Market Insight Callout */
+    .market-callout {
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-left: 4px solid #0f172a;
+        padding: 18px 20px;
+        border-radius: 6px;
+        margin: 18px 0;
     }
     </style>
     """, unsafe_allow_html=True)
