@@ -10,7 +10,8 @@ from utils import (
     load_dataset,
     load_comparison_data,
     format_inr,
-    apply_custom_styles
+    apply_custom_styles,
+    render_dataframe
 )
 
 # Page configuration
@@ -109,7 +110,7 @@ with col_arch:
 with col_data:
     st.subheader("📋 Dataset Overview & Structural Summary")
     st.caption(f"Shape: {df.shape[0]:,} rows × {df.shape[1]} features | Target: `price`")
-    st.dataframe(df.head(6), use_container_width=True, hide_index=True)
+    render_dataframe(df.head(6))
     
     st.markdown("""
     **Core Feature Spectrum:**

@@ -3,7 +3,7 @@ Page 3: Live Real Estate Price Predictor & What-If Simulator
 """
 import streamlit as st
 import pandas as pd
-from utils import load_bundle, format_inr, apply_custom_styles
+from utils import load_bundle, format_inr, apply_custom_styles, render_button
 
 st.set_page_config(page_title="Price Predictor - Real Estate AI", page_icon="🔮", layout="wide")
 apply_custom_styles()
@@ -57,7 +57,7 @@ if "current_preset" not in st.session_state:
     st.session_state["current_preset"] = "🏙️ Mumbai Luxury Villa"
 
 for idx, (p_name, p_data) in enumerate(PRESETS.items()):
-    if preset_cols[idx].button(p_name, use_container_width=True):
+    if render_button(p_name, container=preset_cols[idx]):
         st.session_state["current_preset"] = p_name
         for k, v in p_data.items():
             st.session_state[f"input_{k}"] = v

@@ -4,7 +4,7 @@ Page 1: Exploratory Data Analysis (EDA) & Feature Relationships
 import os
 import streamlit as st
 import pandas as pd
-from utils import load_dataset, format_inr, apply_custom_styles
+from utils import load_dataset, format_inr, apply_custom_styles, render_dataframe, render_image
 
 st.set_page_config(page_title="EDA & Insights - Real Estate AI", page_icon="📊", layout="wide")
 apply_custom_styles()
@@ -52,7 +52,7 @@ with tab1:
     left_c, right_c = st.columns([3, 2])
     with left_c:
         if os.path.exists(img_path):
-            st.image(img_path, caption=f"Distribution and Boxplot for {col_sel.replace('_', ' ').title()}", use_container_width=True)
+            render_image(img_path, caption=f"Distribution and Boxplot for {col_sel.replace('_', ' ').title()}")
         else:
             st.info(f"Distribution plot for {col_sel} will be rendered here.")
     
@@ -73,7 +73,7 @@ with tab1:
                 f"{s['75%'] - s['25%']:,.2f}"
             ]
         })
-        st.dataframe(stats_df, use_container_width=True, hide_index=True)
+        render_dataframe(stats_df)
         
         st.markdown("""
         **Key Observation:**
@@ -100,7 +100,7 @@ with tab2:
     
     with c_img:
         if os.path.exists(cat_img):
-            st.image(cat_img, caption=f"Price Distribution across {cat_feature.replace('_', ' ').title()}", use_container_width=True)
+            render_image(cat_img, caption=f"Price Distribution across {cat_feature.replace('_', ' ').title()}")
     
     with c_table:
         st.markdown(f"#### Group Aggregations ({cat_feature.replace('_', ' ').title()})")
@@ -109,7 +109,7 @@ with tab2:
         agg["Mean Price"] = agg["Mean Price"].apply(format_inr)
         agg["Median Price"] = agg["Median Price"].apply(format_inr)
         agg["Std Dev"] = agg["Std Dev"].apply(format_inr)
-        st.dataframe(agg, use_container_width=True, hide_index=True)
+        render_dataframe(agg)
         
         st.markdown("""
         > **Market Takeaway:**
@@ -129,7 +129,7 @@ with tab3:
     
     corr_img = os.path.join(img_dir, "correlation_heatmap.png")
     if os.path.exists(corr_img):
-        st.image(corr_img, caption="Correlation Matrix Heatmap with One-Hot Encoded Features", use_container_width=True)
+        render_image(corr_img, caption="Correlation Matrix Heatmap with One-Hot Encoded Features")
         
     c_m1, c_m2 = st.columns(2)
     with c_m1:
@@ -162,6 +162,6 @@ with tab4:
     
     scat_img = os.path.join(img_dir, f"scatter_{scatter_var}_vs_price.png")
     if os.path.exists(scat_img):
-        st.image(scat_img, caption=f"Scatter Relationship: {scatter_var} vs Price", use_container_width=True)
+        render_image(scat_img, caption=f"Scatter Relationship: {scatter_var} vs Price")
     else:
         st.info("Scatter plot not found.")

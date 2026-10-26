@@ -83,6 +83,31 @@ def format_inr(value):
     return formatted
 
 
+def render_dataframe(df, hide_index=True, **kwargs):
+    """Renders dataframe without deprecation warnings across modern and older Streamlit."""
+    try:
+        return st.dataframe(df, width="stretch", hide_index=hide_index, **kwargs)
+    except (TypeError, ValueError):
+        return st.dataframe(df, use_container_width=True, hide_index=hide_index, **kwargs)
+
+
+def render_image(image, caption=None, **kwargs):
+    """Renders image without deprecation warnings across modern and older Streamlit."""
+    try:
+        return st.image(image, caption=caption, width="stretch", **kwargs)
+    except (TypeError, ValueError):
+        return st.image(image, caption=caption, use_container_width=True, **kwargs)
+
+
+def render_button(label, container=None, **kwargs):
+    """Renders button full-width without deprecation warnings."""
+    target = container if container is not None else st
+    try:
+        return target.button(label, width="stretch", **kwargs)
+    except (TypeError, ValueError):
+        return target.button(label, use_container_width=True, **kwargs)
+
+
 def apply_custom_styles():
     """Injects high-end presentation styling."""
     st.markdown("""

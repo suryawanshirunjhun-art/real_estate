@@ -4,7 +4,7 @@ Page 2: Model Benchmarking, Evaluation & Selection
 import os
 import streamlit as st
 import pandas as pd
-from utils import load_bundle, load_comparison_data, format_inr, apply_custom_styles
+from utils import load_bundle, load_comparison_data, format_inr, apply_custom_styles, render_dataframe, render_image
 
 st.set_page_config(page_title="Model Benchmarking - Real Estate AI", page_icon="🤖", layout="wide")
 apply_custom_styles()
@@ -57,10 +57,8 @@ with tab1:
         display_df["CV R2 (std)"] = display_df["CV R2 (std)"].apply(lambda x: f"±{x:.4f}")
         display_df["MAPE %"] = display_df["MAPE %"].apply(lambda x: f"{x:.2f}%")
         
-        st.dataframe(
-            display_df[["Model", "CV R2 (mean)", "CV R2 (std)", "Test R2", "Test Adj R2", "MAE", "RMSE", "MAPE %", "Best Params"]],
-            use_container_width=True,
-            hide_index=True
+        render_dataframe(
+            display_df[["Model", "CV R2 (mean)", "CV R2 (std)", "Test R2", "Test Adj R2", "MAE", "RMSE", "MAPE %", "Best Params"]]
         )
     
     st.markdown("""
@@ -85,7 +83,7 @@ with tab2:
     col_p1, col_p2 = st.columns([3, 2])
     with col_p1:
         if os.path.exists(r2_plot):
-            st.image(r2_plot, caption="R² Comparison across Train, Test, and CV folds", use_container_width=True)
+            render_image(r2_plot, caption="R² Comparison across Train, Test, and CV folds")
     with col_p2:
         st.markdown("#### Hyperparameter Configurations Found via GridSearchCV")
         st.markdown("""
@@ -113,7 +111,7 @@ with tab3:
     
     diag_plot = os.path.join(img_dir, "actual_vs_predicted.png")
     if os.path.exists(diag_plot):
-        st.image(diag_plot, caption="Actual vs. Predicted Values (Left) & Residual Distribution (Right)", use_container_width=True)
+        render_image(diag_plot, caption="Actual vs. Predicted Values (Left) & Residual Distribution (Right)")
     
     st.markdown(r"""
     **Diagnostic Takeaways:**

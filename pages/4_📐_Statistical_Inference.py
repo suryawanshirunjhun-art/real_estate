@@ -3,7 +3,7 @@ Page 4: Applied Statistical Inference, Hypothesis Testing & Sampling Theory
 """
 import os
 import streamlit as st
-from utils import apply_custom_styles
+from utils import apply_custom_styles, render_image
 
 st.set_page_config(page_title="Statistical Inference - Real Estate AI", page_icon="📐", layout="wide")
 apply_custom_styles()
@@ -39,7 +39,7 @@ with tab1:
     c1, c2 = st.columns([3, 2])
     with c1:
         if os.path.exists(corr_img):
-            st.image(corr_img, caption="Lab 6B: Correlation Scatter Plots and Fitted Regression Lines", use_container_width=True)
+            render_image(corr_img, caption="Lab 6B: Correlation Scatter Plots and Fitted Regression Lines")
     with c2:
         st.markdown("#### Hypothesis Testing on Pearson $r$ (Lab 6C)")
         st.markdown(r"""
@@ -62,7 +62,7 @@ with tab2:
     p1, p2 = st.columns([3, 2])
     with p1:
         if os.path.exists(prac_img):
-            st.image(prac_img, caption="Practical 6: ANOVA Group Comparisons and Contingency Distributions", use_container_width=True)
+            render_image(prac_img, caption="Practical 6: ANOVA Group Comparisons and Contingency Distributions")
     with p2:
         st.markdown(r"#### 1. Chi-Square Test of Independence ($\chi^2$)")
         st.markdown(r"""
@@ -94,11 +94,11 @@ with tab3:
     with clt_col1:
         pop_img = os.path.join(stats_dir, "ex3_population.png")
         if os.path.exists(pop_img):
-            st.image(pop_img, caption="Underlying Population Distribution (Highly Skewed / Exponential)", use_container_width=True)
+            render_image(pop_img, caption="Underlying Population Distribution (Highly Skewed / Exponential)")
     with clt_col2:
         samp_img = os.path.join(stats_dir, f"ex3_sampling_n{n_choice}.png")
         if os.path.exists(samp_img):
-            st.image(samp_img, caption=f"Sampling Distribution of Mean at n = {n_choice}", use_container_width=True)
+            render_image(samp_img, caption=f"Sampling Distribution of Mean at n = {n_choice}")
     
     st.markdown(fr"""
     **Takeaway at $n={n_choice}$:**
@@ -120,7 +120,7 @@ with tab4:
     b1, b2 = st.columns([3, 2])
     with b1:
         if os.path.exists(boot_img):
-            st.image(boot_img, caption="Bootstrap Sampling Distribution & 95% Confidence Bounds", use_container_width=True)
+            render_image(boot_img, caption="Bootstrap Sampling Distribution & 95% Confidence Bounds")
     with b2:
         st.markdown("#### Mean vs. Median as Estimators")
         st.markdown("""
